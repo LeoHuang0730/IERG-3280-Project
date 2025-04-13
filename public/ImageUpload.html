@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Upload</title>
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
+
+    .upload-form {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+
+    .upload-form label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .upload-form input[type="file"] {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .upload-form input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      border: none;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .upload-form input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>Image Upload</h1>
+
+  <div class="upload-form">
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <label for="image">Select an Image to Upload:</label>
+      <input type="file" id="image" name="image" accept="image/*" required>
+      <input type="submit" value="Upload Image">
+    </form>
+  </div>
+  <a class="back-link" href="Index.html"><button>Back to Index Page</button></a>
+
+</body>
+</html>

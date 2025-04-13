@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Gallery</title>
+  <style>
+    .header {
+      text-align: center;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
+
+    .gallery-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .gallery-item {
+      margin: 20px;
+      text-align: center;
+    }
+
+    .gallery-item img {
+      width: 300px;
+      height: 200px;
+    }
+
+    .gallery-item p {
+      margin-top: 10px;
+    }
+  </style>
+  <script>
+    async function fetchImageInfo() {
+      try {
+        const response = await fetch('/images');
+        const imageInfo = await response.json();
+        return imageInfo;
+      } catch (error) {
+        console.error('Error fetching image info:', error);
+        return [];
+      }
+    }
+
+    // Function to create image elements and append them to the gallery container
+    function createImageElements(imageInfo) {
+      const galleryContainer = document.getElementById('galleryContainer');
+
+      imageInfo.forEach(info => {
+        const { name, url } = info;
+
+        const galleryItem = document.createElement('div');
+        galleryItem.className = 'gallery-item';
+
+        const imageElement = document.createElement('img');
+        imageElement.src = url;
+
+        const nameElement = document.createElement('p');
+        nameElement.textContent = name;
+
+        galleryItem.appendChild(imageElement);
+        galleryItem.appendChild(nameElement);
+        galleryContainer.appendChild(galleryItem);
+      });
+    }
+
+    // Fetch image URLs and names, and create image elements on page load
+    window.onload = async function() {
+      const imageInfo = await fetchImageInfo();
+      createImageElements(imageInfo);
+    };
+  </script>
+</head>
+<body>
+  <div class="header">
+    <h1>Image Gallery</h1>
+    <a class="back-link" href="Index.html"><button>Back to Index Page</button></a>
+  </div>
+
+  <div class="gallery-container" id="galleryContainer"></div>
+</body>
+</html>
